@@ -41,7 +41,7 @@ function createItem(val) {
     delBtn.textContent = 'Delete';
     delBtn.classList.add('btn-link')
 
-    //Add 'span' and 'delBtn' to the parent 'item'
+    //Add span and delBtn to the parent item
     item.appendChild(span);
     item.appendChild(delBtn);
 
