@@ -13,12 +13,20 @@
 // 6. Auto focus after add
 //7. Enable Enter-to-submit function
 
-
-const form = document.querySelector('form.add');
-const addButton = document.querySelector('#addButton');
+const form = document.querySelector('form.add')
 const itemToAdd = document.querySelector('#itemToAdd');
+const addButton = document.querySelector('#addButton');
 const ul = document.querySelector('.todo');
+const body = document.querySelector('body');
+const app = document.querySelector('.app');
 
+app.addEventListener('click', function(event){
+    event.stopPropagation();
+});
+
+body.addEventListener('click', function(event){
+    ul.innerHTML = '';
+})
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -30,25 +38,20 @@ form.addEventListener('submit', function(event) {
     }
 });
 
-function createItem(val) {
+function createItem (val) {
     const item = document.createElement('li');
     const span = document.createElement('span');
-    const delBtn = document.createElement('button');
-   
-    //Assign input value of the text node to the span
-    span.textContent = val;
-    //Add name and styling to the delete button
-    delBtn.textContent = 'Delete';
-    delBtn.classList.add('btn-link')
+    const delButton = document.createElement('button');
 
-    //Add span and delBtn to the parent item
     item.appendChild(span);
-    item.appendChild(delBtn);
+    item.appendChild(delButton);
 
-    //Add delete funtionality to 'delete button'
-    delBtn.addEventListener('click', function() {
-        item.parentNode.removeChild(item)
+    span.textContent = val;
+    delButton.textContent = 'Delete';
+    delButton.classList.add('btn-link')
+
+    delButton.addEventListener('click', function() {
+        item.parentNode.removeChild(item);
     })
-
     return item;
 }
